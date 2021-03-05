@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <properties resource="generator/config.properties"/>
+
+    <context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+        <property name="beginningDelimiter" value=""/>
+        <property name="endingDelimiter" value=""/>
+
+        <plugin type="${mapper.plugin}">
+            <property name="mappers" value="${mapper.mapper}"/>
+        </plugin>
+
+        <jdbcConnection driverClass="${jdbc.driverClass}"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/claire-mini?characterEncoding=utf8"
+                        userId="${jdbc.user}"
+                        password="${jdbc.password}">
+        </jdbcConnection>
+
+        <!--<javaTypeResolver >-->
+            <!--<property name="forceBigDecimals" value="false" />-->
+        <!--</javaTypeResolver>-->
+
+        <javaModelGenerator targetPackage="${targetModelPackage}" targetProject="${targetJavaProject}">
+            <property name="rootClass" value="com.claiire.demo.entity.BaseEntityNew" />
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="${targetXMLPackage}"  targetProject="${targetResourcesProject}">
+        </sqlMapGenerator>
+
+        <javaClientGenerator  targetPackage="${targetMapperPackage}"  targetProject="${targetJavaProject}" type="XMLMAPPER">
+        </javaClientGenerator>
+        <!--生成用户的相关类-->
+        <table schema="claire-mini" tableName="test_user" domainObjectName="TestUser"
+               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true" />
+            <!--<columnOverride column="DATE_FIELD" property="startDate" />-->
+            <!--<ignoreColumn column="FRED" />-->
+            <!--<columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />-->
+        </table>
+
+    </context>
+</generatorConfiguration>

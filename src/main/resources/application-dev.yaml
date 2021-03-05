@@ -1,0 +1,28 @@
+server:
+  port: 8081
+  #  connection-timeout: 1800000新版本不适合
+  servlet:
+    session:
+      timeout: 30m #30分钟，测试的话时间不能太短，否则不准，不写单位默认毫秒pring：
+    name: usertest #springboot的名称，在cloud的集群众表示当前应用
+
+spring:
+  application:
+    name: usertest #springboot的名称，在cloud的集群众表示当前应用
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/claire-mini?useUnicode=true&characterEncoding=utf8&useSSL=true
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.claiire.demo.entity
+  configuration:
+    map-underscore-to-camel-case: true
+
+logging:
+  level:
+    com.claiire.demo.dao: debug #打印sql
+user:
+  key1: uservalue

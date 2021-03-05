@@ -18,7 +18,40 @@
     </resultMap>
     <!--这里的id映射在dao里是方法名,用tk mybatis就不用这样写了-->
     <!--<select id="selectTestUser" parameterType="int" resultType="hashmap">-->
-      <!--SELECT * FROM test_user WHERE ID = #{id}-->
+    <!--SELECT * FROM test_user WHERE ID = #{id}-->
     <!--</select>-->
+    <update id="updateUserDemo">
+        update test_user set
+         user_name = #{username},
+         password = #{password},
+         email = #{email}
+        where id = #{id}
+</update>
+    <!--计数-->
+    <!--#{}代表接收入参，这里比用$好,#号是预编译符，防止sql注入-->
+    <select id="count" parameterType="int">
+        SELECT count(1) from test_user WHERE ID = #{id}
+        <if test="">
+            and
+        </if>
+        and
+    </select>
+
+    <select id="getByName"
+            resultType="TestUser">
+        SELECT * FROM test_user
+
+        <where>
+            <if test="userId !=null">
+                id= #{userId}
+            </if>
+            <if test="userName != null and userName!=''">
+                and user_name like concat('%',#{userName},'%')
+            </if>
+        </where>
+
+
+    </select>
+
 
 </mapper>

@@ -21,7 +21,7 @@ public class GlobalCorsConfig {
         final UrlBasedCorsConfigurationSource source= new UrlBasedCorsConfigurationSource();
         final CorsConfiguration config=new CorsConfiguration();
         config.setAllowCredentials(true);//允许cookies跨域
-        config.addAllowedOrigin("*");//允许向该服务器提交请求的URI。*表示全部允许
+        config.addAllowedOriginPattern("*");//允许向该服务器提交请求的URI。*表示全部允许
         config.addAllowedHeader("*");//允许访问的头信息
         config.setMaxAge(18000L);//预检请求的缓存时间（秒），在这个时间段里，对于相同的跨域请求不会再预检了
         config.addAllowedMethod("POST");//向指定资源提交数据进行处理请求（例如提交表单或者上传文件）。数据被包含在请求体中。POST 请求可能会导致新的资源的建立和/或已有资源的修改。
